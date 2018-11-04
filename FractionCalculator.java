@@ -203,9 +203,13 @@ public class FractionCalculator
     }
     
     public static String gcfFraction (int num1, int num2)
+    // arguments are numerator and denominator
     {
-        int numerator = num1;  //initialize numerator
-        int denominator = num2; //initialize denominator
+        /** finds greatest common factor, reduces the fraction if needed
+         * and writes fraction in mixed number format if appropriate
+         **/
+        int numerator = num1;  //initialize numerator to use later
+        int denominator = num2; //initialize denominator to use later
         int tempNum;
         while (num1 % num2 != 0)  // use Euclid's algorithm
         {
@@ -217,19 +221,19 @@ public class FractionCalculator
         {
             num2 = num2 * -1;
         }
-        int factor = num2;
-        numerator = numerator/factor;
-        denominator = denominator/factor;
+        int factor = num2; //this is the GCF
+        numerator = numerator/factor;  //reduce numerator
+        denominator = denominator/factor;  //reduce denominator
 
         String fractionFinal = "";
-        if (denominator != 1 )
+        if (denominator != 1 ) 
         {
             if (denominator < 0) // move "-" from denominator to numerator
             {
                 numerator = numerator * -1;
                 denominator = denominator * -1;
             }
-            // make answer mixed numer if it is an improper fraction
+            // make answer mixed number if it is an improper fraction
             if (Math.abs(numerator) > Math.abs(denominator))
             {
                 int wholeNum = numerator / denominator;
@@ -241,8 +245,8 @@ public class FractionCalculator
                 fractionFinal = numerator + "/" + denominator;
             }
         }
-        else if (denominator == 1)  
-        {//remove denominator from final answer if = 1;
+        else if (denominator == 1)  //remove "/1" if denominator = 1
+        {
             fractionFinal = numerator + "";
         }
         return fractionFinal;
